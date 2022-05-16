@@ -1,0 +1,34 @@
+.container {
+  padding: 0 2rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.main {
+  min-height: 100vh;
+  padding: 1rem 0;
+}
+
+.footer {
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea99;
+}
+
+.title {
+  line-height: 1.15;
+  text-align: center;
+}
+
+.stationList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin: 0.5rem 0;
+
+    a {
+      font-size: 1rem;
+    }
+  }
+}
