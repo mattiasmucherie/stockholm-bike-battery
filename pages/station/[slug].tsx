@@ -1,6 +1,6 @@
 import type { NextPage } from "next"
 import axios from "axios"
-import { RootObject, Vehicle } from "../../types/MobilityOptions"
+import { Location, RootObject, Vehicle } from "../../types/MobilityOptions"
 import { GetServerSideProps } from "next"
 import styles from "../../styles/Home.module.scss"
 import Bikes from "../../components/Bikes"
@@ -9,15 +9,31 @@ interface StationProps {
   bikes?: Vehicle[]
   station?: string
   occupancy?: number
+  location: Location
 }
 
-const Station: NextPage<StationProps> = ({ bikes, station, occupancy }) => {
+const Station: NextPage<StationProps> = ({
+  bikes,
+  station,
+  occupancy,
+  location,
+}) => {
   const bikeAvailable = !!bikes && bikes.some((bike) => !!bike.licensePlate)
-
+  const coordString = `${location.latitude}%2C${location.longitude}`
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <h1>{station}</h1>
+        <p>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`https://www.google.com/maps/search/?api=1&query=${coordString}`}
+          >
+            Click for Directions
+          </a>
+        </p>
+
         {!!occupancy && (
           <div>
             There {occupancy > 1 ? "are" : "is"} {occupancy} bike
@@ -48,6 +64,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       ),
       station: res.data.mobilityOption.station.address,
       occupancy: res.data.mobilityOption.occupancy,
+      location: res.data.mobilityOption.station.location,
     },
   }
 }

@@ -26,7 +26,6 @@ const Home: NextPage<HomeProps> = ({ stations }) => {
     return ""
   }
 
-  console.warn(stations)
   return (
     <div className={styles.container}>
       <Head>
