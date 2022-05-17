@@ -26,9 +26,18 @@
 
   li {
     margin: 0.5rem 0;
-
+  display: flex;
+    justify-content: space-between;
     a {
       font-size: 1rem;
     }
   }
+}
+
+
+.highOcc {
+  color: #99e38a;
+}
+.lowOcc {
+  color: #da7777;
 }
