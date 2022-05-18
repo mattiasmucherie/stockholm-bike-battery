@@ -107,7 +107,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     .filter((s) => s)
     .sort((a, b) => {
       const sA = a!.address.replace(/^[\s\d]+/, "").toUpperCase()
-      const sB = b!.address.replace(/^[\s\d]+/, "")
+      const sB = b!.address.replace(/^[\s\d]+/, "").toUpperCase()
       if (sA < sB) {
         return -1
       }
