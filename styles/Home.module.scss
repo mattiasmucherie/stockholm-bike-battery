@@ -41,3 +41,17 @@
 .lowOcc {
   color: #da7777;
 }
+.favoriteButton{
+  padding: 5px 15px;
+  text-transform: capitalize;
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: transparent;
+  border: 1px solid rgba(150, 152, 159, 0.5);
+  cursor: pointer;
+  color: #d8dce3;
+  &:hover {
+    border: 1px solid rgb(150, 152, 159);
+    background-color:rgba(150, 152, 159, 0.16 );
+  }
+}

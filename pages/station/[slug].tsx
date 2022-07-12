@@ -40,8 +40,13 @@ const Station: NextPage<StationProps> = ({
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1>{station}</h1>
-        <button onClick={handleOnClickFavorite}>
+        <h1>
+          {station} {stationIsFavorite && "⭐"}
+        </h1>
+        <button
+          className={styles.favoriteButton}
+          onClick={handleOnClickFavorite}
+        >
           {stationIsFavorite ? "Remove" : "Set"} as favorite
         </button>
         <p>

@@ -6,6 +6,7 @@ import { data } from "../constants/station"
 import axios from "axios"
 import { PurpleType, StationData } from "../types/StationsMobilityOptions"
 import ListOfStations from "../components/ListOfStations"
+import Footer from "../components/Footer"
 
 interface HomeProps {
   stations: ({
@@ -14,8 +15,9 @@ interface HomeProps {
     capacity: number
     address: string
   } | null)[]
+  amountOfBikes?: number
 }
-const Home: NextPage<HomeProps> = ({ stations }) => (
+const Home: NextPage<HomeProps> = ({ stations, amountOfBikes }) => (
   <div className={styles.container}>
     <Head>
       <title>Stockholm E-bike status</title>
@@ -26,33 +28,10 @@ const Home: NextPage<HomeProps> = ({ stations }) => (
     <main className={styles.main}>
       <h1 className={styles.title}>Stockholm e-bike status</h1>
       <h4>Just click on a station to see the battery percentage of a bike</h4>
+      <h5>There are currently {amountOfBikes} bikes available</h5>
       <ListOfStations stations={stations} />
     </main>
-    <footer className={styles.footer}>
-      <p>Battery levels are not always available</p>
-      <p>
-        Powered by{" "}
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://stockholmebikes.se/"
-        >
-          Stockholm eBike
-        </a>
-        &apos;s API
-      </p>
-      <p>
-        Made by{" "}
-        <a
-          href="https://github.com/mattiasmucherie"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {" "}
-          Mattias Mucherie
-        </a>
-      </p>
-    </footer>
+    <Footer />
   </div>
 )
 
@@ -91,9 +70,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       }
       return 0
     })
-
+  const amountOfBikes = stations.reduce((prev, current) => {
+    if (current?.occupancy) {
+      return prev + current.occupancy
+    }
+    return prev
+  }, 0)
   return {
-    props: { stations },
+    props: { stations, amountOfBikes },
   }
 }
 
