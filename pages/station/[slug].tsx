@@ -4,12 +4,14 @@ import { Location, RootObject, Vehicle } from "../../types/MobilityOptions"
 import { GetServerSideProps } from "next"
 import styles from "../../styles/Home.module.scss"
 import Bikes from "../../components/Bikes"
+import { useLocalStorage } from "../../hooks/useLocalStorage"
 
 interface StationProps {
   bikes?: Vehicle[]
   station?: string
   occupancy?: number
   location: Location
+  stationId?: string
 }
 
 const Station: NextPage<StationProps> = ({
@@ -17,13 +19,31 @@ const Station: NextPage<StationProps> = ({
   station,
   occupancy,
   location,
+  stationId,
 }) => {
   const bikeAvailable = !!bikes && bikes.some((bike) => !!bike.licensePlate)
   const coordString = `${location.latitude}%2C${location.longitude}`
+  const [favoriteStations, setFavoriteStations] = useLocalStorage<string[]>(
+    "favoriteStations",
+    []
+  )
+  const stationIsFavorite = !!stationId && favoriteStations.includes(stationId)
+  const handleOnClickFavorite = () => {
+    if (stationId) {
+      if (!stationIsFavorite) {
+        setFavoriteStations([...favoriteStations, stationId])
+      } else {
+        setFavoriteStations(favoriteStations.filter((s) => s !== stationId))
+      }
+    }
+  }
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <h1>{station}</h1>
+        <button onClick={handleOnClickFavorite}>
+          {stationIsFavorite ? "Remove" : "Set"} as favorite
+        </button>
         <p>
           <a
             target="_blank"
@@ -65,6 +85,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       station: res.data.mobilityOption.station.address,
       occupancy: res.data.mobilityOption.occupancy,
       location: res.data.mobilityOption.station.location,
+      stationId: res.data.mobilityOption.station.id,
     },
   }
 }
