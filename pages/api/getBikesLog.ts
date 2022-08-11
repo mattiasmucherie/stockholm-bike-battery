@@ -10,6 +10,7 @@ export default async function handler(
   d.setDate(d.getDate() - 7)
   const result = await prisma.batteryPost.findMany({
     where: { createdAt: { lte: new Date(), gte: d } },
+    orderBy: { createdAt: "asc" },
   })
   res.json(result)
 }
