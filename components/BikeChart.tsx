@@ -35,6 +35,7 @@ interface BikeChartProps {
 const BikeChart: FC<BikeChartProps> = (props) => {
   const [bikesLastDays, setBikesLastDays] = useState(props.bikesData)
   const [days, setDays] = useState(0)
+  const [loading, setLoading] = useState(false)
 
   const handleOnClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     setDays(parseInt((event.target as HTMLElement).innerText))
@@ -65,20 +66,32 @@ const BikeChart: FC<BikeChartProps> = (props) => {
 
   useEffect(() => {
     if (days) {
+      setLoading(true)
       axios
         .get(`${serverUrl}/api/getBikesLog?days=${days}`)
         .then((res) => setBikesLastDays(res.data))
+        .finally(() => setLoading(false))
     }
   }, [days])
   return (
     <div className={styles.container}>
-      <div className={styles.buttonsRow}>
+      <div className={styles.wrapper}>
         <p>
-          Showing last {days || 7} {days > 1 ? "days" : "day"}
+          {loading
+            ? "Loading..."
+            : `Showing last ${days || 7} ${days > 1 ? "days" : "day"}`}
         </p>
-        <button onClick={handleOnClick}>30</button>
-        <button onClick={handleOnClick}>7</button>
-        <button onClick={handleOnClick}>1</button>
+        <div className={styles.buttonsRow}>
+          <button onClick={handleOnClick} disabled={loading}>
+            30
+          </button>
+          <button onClick={handleOnClick} disabled={loading}>
+            7
+          </button>
+          <button onClick={handleOnClick} disabled={loading}>
+            1
+          </button>
+        </div>
       </div>
       <Line data={data} options={Config} />
     </div>

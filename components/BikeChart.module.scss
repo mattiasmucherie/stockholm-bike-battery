@@ -5,13 +5,11 @@
     padding: 1rem;
   }
 }
+.wrapper {
+  padding: 3rem;
+}
 .buttonsRow {
   display: flex;
   gap: 1rem;
-  padding: 3rem;
   align-items: center;
-  p {
-    margin: 0;
-    padding: 0;
-  }
 }

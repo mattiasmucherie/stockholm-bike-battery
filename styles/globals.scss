@@ -3,7 +3,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background: #393a40;
   color: #d8dce3;
 }
@@ -21,10 +21,15 @@ a {
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #ffffff;
 }
-button{
+button {
   padding: 5px 15px;
   text-transform: capitalize;
   font-weight: 500;
@@ -35,6 +40,12 @@ button{
   color: #d8dce3;
   &:hover {
     border: 1px solid rgb(150, 152, 159);
-    background-color:rgba(150, 152, 159, 0.16 );
+    background-color: rgba(150, 152, 159, 0.16);
+  }
+  &:disabled {
+    cursor: not-allowed;
+    border: 1px solid rgba(150, 152, 159, 0.5);
+    color: rgb(150, 152, 159);
+    background-color: transparent;
   }
 }
