@@ -7,6 +7,7 @@ import axios from "axios"
 import { PurpleType, StationData } from "../types/StationsMobilityOptions"
 import ListOfStations from "../components/ListOfStations"
 import Footer from "../components/Footer"
+import Link from "next/link"
 
 interface HomeProps {
   stations: ({
@@ -29,6 +30,9 @@ const Home: NextPage<HomeProps> = ({ stations, amountOfBikes }) => (
       <h1 className={styles.title}>Stockholm e-bike status</h1>
       <h4>Just click on a station to see the battery percentage of a bike</h4>
       <h5>There are currently {amountOfBikes} bikes available</h5>
+      <h3>
+        See a graph of availability over time <Link href="/chart">here</Link>
+      </h3>
       <ListOfStations stations={stations} />
     </main>
     <Footer />
