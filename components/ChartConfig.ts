@@ -4,6 +4,11 @@ export const Config: ChartOptions<"line"> = {
   animation: {
     duration: 1,
   },
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
   maintainAspectRatio: false,
   responsive: true,
   hover: {

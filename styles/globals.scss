@@ -24,3 +24,17 @@ a {
 h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
 }
+button{
+  padding: 5px 15px;
+  text-transform: capitalize;
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: transparent;
+  border: 1px solid rgba(150, 152, 159, 0.5);
+  cursor: pointer;
+  color: #d8dce3;
+  &:hover {
+    border: 1px solid rgb(150, 152, 159);
+    background-color:rgba(150, 152, 159, 0.16 );
+  }
+}

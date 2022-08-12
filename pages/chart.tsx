@@ -8,7 +8,7 @@ const Chart = (props: any) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const bikesData = await axios.get(`${serverUrl}/api/getBikesLog`)
+  const bikesData = await axios.get(`${serverUrl}/api/getBikesLog?days=7`)
   return { props: { bikesData: bikesData.data } }
 }
 
