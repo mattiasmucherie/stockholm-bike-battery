@@ -41,6 +41,13 @@ const BikeChart: FC<BikeChartProps> = (props) => {
   const [days, setDays] = useState(0)
   const [loading, setLoading] = useState(false)
 
+  const maxBikes = bikesLastDays.reduce((a, b) =>
+    a.bikes > b.bikes ? a : b
+  ).bikes
+  const minBikes = bikesLastDays.reduce((a, b) =>
+    a.bikes < b.bikes ? a : b
+  ).bikes
+
   const handleOnClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     setDays(parseInt((event.target as HTMLElement).innerText))
   }
@@ -50,7 +57,6 @@ const BikeChart: FC<BikeChartProps> = (props) => {
       y: el.bikes,
     }))
   }
-
   const data: ChartData<"line", { x: number; y: number }[], unknown> = {
     datasets: [
       {
@@ -91,6 +97,10 @@ const BikeChart: FC<BikeChartProps> = (props) => {
           <button onClick={handleOnClick} disabled={loading}>
             1
           </button>
+        </div>
+        <div>
+          <p>Max: {maxBikes} bikes</p>
+          <p>Min: {minBikes} bikes</p>
         </div>
       </div>
       <Line data={data} options={Config} />
