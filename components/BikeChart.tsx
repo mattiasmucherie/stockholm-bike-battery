@@ -1,10 +1,7 @@
 import { Line } from "react-chartjs-2"
-import { Config } from "./ChartConfig"
 import { FC, MouseEventHandler, useEffect, useState } from "react"
-import styles from "./BikeChart.module.scss"
 import {
   Chart,
-  CategoryScale,
   LinearScale,
   LineElement,
   PointElement,
@@ -13,14 +10,19 @@ import {
   Title,
   Legend,
   Filler,
+  TimeScale,
 } from "chart.js"
+import "chartjs-adapter-date-fns"
+import { getUnixTime } from "date-fns"
 import axios from "axios"
+import styles from "./BikeChart.module.scss"
+import { Config } from "../lib/ChartConfig"
 import { serverUrl } from "../lib/serverUrl"
 import { BikesLog } from "../types/BikesLog"
 
 Chart.register(
-  CategoryScale,
   LinearScale,
+  TimeScale,
   LineElement,
   PointElement,
   Tooltip,
@@ -41,19 +43,17 @@ const BikeChart: FC<BikeChartProps> = (props) => {
   const handleOnClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     setDays(parseInt((event.target as HTMLElement).innerText))
   }
-  const formatData = (data: BikesLog[]): { x: string; y: string }[] => {
-    return data.map((el) => {
-      return {
-        x: new Date(el.createdAt).toLocaleString(),
-        y: el.bikes.toString(),
-      }
-    })
+  const formatData = (data: BikesLog[]): { x: number; y: number }[] => {
+    return data.map((el) => ({
+      x: getUnixTime(new Date(el.createdAt)) * 1000,
+      y: el.bikes,
+    }))
   }
 
-  const data: ChartData<"line", { x: string; y: string }[], unknown> = {
+  const data: ChartData<"line", { x: number; y: number }[], unknown> = {
     datasets: [
       {
-        label: "Bike in stations",
+        label: "Bikes in stations",
         data: formatData(bikesLastDays),
         tension: 0.5,
         fill: true,

@@ -1,26 +1,28 @@
 import { ChartOptions } from "chart.js"
 
 export const Config: ChartOptions<"line"> = {
-  animation: {
-    duration: 1,
-  },
+  animation: false,
   plugins: {
     legend: {
       display: false,
     },
   },
+  parsing: false,
   maintainAspectRatio: false,
   responsive: true,
-  hover: {
+
+  interaction: {
     mode: "nearest",
-    intersect: true,
+    axis: "x",
+    intersect: false,
   },
   scales: {
     x: {
-      display: true,
+      type: "time",
       ticks: {
+        source: "auto",
         autoSkip: true,
-        maxTicksLimit: 10,
+        maxRotation: 0,
         color: "#d8dce3",
       },
     },
