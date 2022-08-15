@@ -1,13 +1,15 @@
+import axios from "axios"
 import type { NextPage } from "next"
 import { GetServerSideProps } from "next"
 import Head from "next/head"
-import styles from "../styles/Home.module.scss"
-import { data } from "../constants/station"
-import axios from "axios"
-import { PurpleType, StationData } from "../types/StationsMobilityOptions"
-import ListOfStations from "../components/ListOfStations"
-import Footer from "../components/Footer"
 import Link from "next/link"
+
+import Footer from "../components/Footer"
+import ListOfStations from "../components/ListOfStations"
+import { data } from "../constants/station"
+import styles from "../styles/Home.module.scss"
+import { PurpleType, StationData } from "../types/StationsMobilityOptions"
+
 
 interface HomeProps {
   stations: ({

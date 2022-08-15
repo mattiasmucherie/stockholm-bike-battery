@@ -1,5 +1,6 @@
-import { Vehicle } from "../types/MobilityOptions"
 import React from "react"
+
+import { Vehicle } from "../types/MobilityOptions"
 import styles from "./Bikes.module.scss"
 
 interface BikesProps {

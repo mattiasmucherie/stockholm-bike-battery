@@ -1,8 +1,9 @@
 import "../styles/globals.scss"
 import type { AppProps } from "next/app"
-import { useEffect } from 'react'
-import Script from 'next/script'
 import { useRouter } from 'next/router'
+import Script from 'next/script'
+import { useEffect } from 'react'
+
 import { GTM_ID, pageview } from '../lib/gtm'
 
 function MyApp({ Component, pageProps }: AppProps) {

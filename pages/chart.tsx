@@ -1,16 +1,15 @@
-import { GetServerSideProps } from "next"
 import axios from "axios"
-import { FC } from "react"
+import { GetServerSideProps, NextPage } from "next"
 
-import { serverUrl } from "../lib/serverUrl"
 import BikeChart from "../components/BikeChart"
+import { serverUrl } from "../lib/serverUrl"
 import { BikesLog } from "../types/BikesLog"
 
 interface ChartProps {
   bikesData: BikesLog[]
 }
 
-const Chart: FC<ChartProps> = ({ bikesData }) => {
+const Chart: NextPage<ChartProps> = ({ bikesData }) => {
   return <BikeChart bikesData={bikesData} />
 }
 

@@ -1,7 +1,8 @@
-import { NextApiRequest, NextApiResponse } from "next"
 import axios from "axios"
-import { PurpleType, StationData } from "../../types/StationsMobilityOptions"
+import { NextApiRequest, NextApiResponse } from "next"
+
 import { RootObject } from "../../types/MobilityOptions"
+import { PurpleType, StationData } from "../../types/StationsMobilityOptions"
 
 export default async function handler(
   req: NextApiRequest,

@@ -1,24 +1,25 @@
-import { Line } from "react-chartjs-2"
-import { FC, MouseEventHandler, useEffect, useState } from "react"
+import axios from "axios"
 import {
   Chart,
-  LinearScale,
-  LineElement,
-  PointElement,
   ChartData,
-  Tooltip,
-  Title,
-  Legend,
   Filler,
+  Legend,
+  LineElement,
+  LinearScale,
+  PointElement,
   TimeScale,
+  Title,
+  Tooltip,
 } from "chart.js"
-import "chartjs-adapter-date-fns"
 import { getUnixTime } from "date-fns"
-import axios from "axios"
-import styles from "./BikeChart.module.scss"
+import { FC, MouseEventHandler, useEffect, useState } from "react"
+import { Line } from "react-chartjs-2"
+import "chartjs-adapter-date-fns"
+
 import { Config } from "../lib/ChartConfig"
 import { serverUrl } from "../lib/serverUrl"
 import { BikesLog } from "../types/BikesLog"
+import styles from "./BikeChart.module.scss"
 
 Chart.register(
   LinearScale,

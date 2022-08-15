@@ -1,7 +1,8 @@
-import styles from "../styles/Home.module.scss"
 import Link from "next/link"
 import { FC, useEffect, useState } from "react"
+
 import { useLocalStorage } from "../hooks/useLocalStorage"
+import styles from "../styles/Home.module.scss"
 
 interface ListOfStationsProps {
   stations: ({

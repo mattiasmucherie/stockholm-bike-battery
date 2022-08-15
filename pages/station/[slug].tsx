@@ -1,10 +1,11 @@
-import type { NextPage } from "next"
 import axios from "axios"
-import { Location, RootObject, Vehicle } from "../../types/MobilityOptions"
+import type { NextPage } from "next"
 import { GetServerSideProps } from "next"
-import styles from "../../styles/Home.module.scss"
+
 import Bikes from "../../components/Bikes"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
+import styles from "../../styles/Home.module.scss"
+import { Location, RootObject, Vehicle } from "../../types/MobilityOptions"
 
 interface StationProps {
   bikes?: Vehicle[]
