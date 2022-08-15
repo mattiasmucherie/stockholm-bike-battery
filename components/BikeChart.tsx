@@ -16,6 +16,7 @@ import {
 } from "chart.js"
 import axios from "axios"
 import { serverUrl } from "../lib/serverUrl"
+import { BikesLog } from "../types/BikesLog"
 
 Chart.register(
   CategoryScale,
@@ -29,7 +30,7 @@ Chart.register(
 )
 
 interface BikeChartProps {
-  bikesData: { id: string; createdAt: Date; bikes: number }[]
+  bikesData: BikesLog[]
 }
 
 const BikeChart: FC<BikeChartProps> = (props) => {
@@ -40,9 +41,7 @@ const BikeChart: FC<BikeChartProps> = (props) => {
   const handleOnClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     setDays(parseInt((event.target as HTMLElement).innerText))
   }
-  const formatData = (
-    data: { id: string; createdAt: Date; bikes: number }[]
-  ): { x: string; y: string }[] => {
+  const formatData = (data: BikesLog[]): { x: string; y: string }[] => {
     return data.map((el) => {
       return {
         x: new Date(el.createdAt).toLocaleString(),
