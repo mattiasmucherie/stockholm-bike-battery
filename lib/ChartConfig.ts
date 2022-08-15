@@ -10,7 +10,8 @@ export const Config: ChartOptions<"line"> = {
   parsing: false,
   maintainAspectRatio: false,
   responsive: true,
-
+  normalized: true,
+  spanGaps: true,
   interaction: {
     mode: "nearest",
     axis: "x",
@@ -26,6 +27,7 @@ export const Config: ChartOptions<"line"> = {
         color: "#d8dce3",
       },
     },
-    y: { display: true, beginAtZero: true, ticks: { color: "#d8dce3" } },
+    y: { display: true, min: 0, ticks: { color: "#d8dce3" } },
   },
+  elements: { point: { radius: 0 } },
 }
