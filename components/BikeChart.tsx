@@ -84,10 +84,10 @@ const BikeChart: FC<BikeChartProps> = (props) => {
       <h1>Showing bikes in stations</h1>
       <div className={styles.wrapper}>
         <p>
-          Only showing bikes in station and I have excluded tow stations that
-          are not used by user imo. The first station I chose to exclude is
-          called <code>Out of station</code>. It is a station that according to
-          the map is close to Västerberga and in my opinion, the usability of
+          Only showing bikes in station and I have excluded two stations that
+          are not included in the business. The first station I chose to exclude
+          is called <code>Out of station</code>. It is a station that according
+          to the map is close to Västerberga and in my opinion, the usability of
           the application is to take a bike that is in a station, so this one
           does not count. The other station I chose to exclude is Västberga
           Industrikvarter since this seems more like a test station for them. It
