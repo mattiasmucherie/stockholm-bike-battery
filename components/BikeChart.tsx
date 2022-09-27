@@ -105,6 +105,9 @@ const BikeChart: FC<BikeChartProps> = (props) => {
         </p>
         <div className={styles.buttonsRow}>
           <button onClick={handleOnClick} disabled={loading}>
+            90
+          </button>
+          <button onClick={handleOnClick} disabled={loading}>
             30
           </button>
           <button onClick={handleOnClick} disabled={loading}>
